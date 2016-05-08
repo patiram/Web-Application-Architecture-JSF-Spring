@@ -1,0 +1,66 @@
+#heading {
+   padding: 20px;
+   height: 193px;
+   margin-bottom: 10px;
+   background: #dddddd;
+   border: 1px solid darkGray;
+   vertical-align: central;
+}
+
+#cat {
+   padding: 20px;
+   margin-bottom: 10px;
+   background: #FFFFFF;
+   border: 1px solid darkGray;
+}
+
+#sidebarLeft {
+   border: thin solid lightGray;
+   padding: 5px;
+   width: 200px;
+   background: #eeeeee;
+}
+
+#content {
+   padding: 5px;
+   border: thin solid lightGray;
+   background: #fefeef;
+   position: absolute;
+   right: 8px;
+   left: 230px;
+   min-height: 400px;
+   top: 252px;
+}
+
+.header {
+   font-size: 1.4em;
+   font-style: italic;
+   font-family: Palatino;
+   text-align: center;
+}
+
+.teaImage {
+   padding: 5px;
+   text-align: center;
+}
+
+.teaImageSelected {
+   padding: 5px;
+   text-align: center;
+   background: #fefeef;
+   border: thin solid lightGray;
+}
+
+.welcome {
+   font-style: italic;
+   font-family: Palatino;
+}
+
+.welcomeImage {
+   margin-top: 10px;
+   text-align: center;
+}
+
+.errorMessage {
+   color:red; 
+}

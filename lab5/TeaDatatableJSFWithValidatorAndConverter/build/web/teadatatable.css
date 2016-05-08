@@ -1,0 +1,20 @@
+
+.orderTable{
+border-collapse: collapse;
+border: 1px solid black;
+text-align: center;
+
+}
+
+.orderTableHeader{
+    background: grey;
+    color: black;
+    font-weight: bold;
+    width: 100px;
+}
+
+.orderTableRow{
+    background: lightblue;
+    border: 1px solid black;
+    height: 35px;
+}

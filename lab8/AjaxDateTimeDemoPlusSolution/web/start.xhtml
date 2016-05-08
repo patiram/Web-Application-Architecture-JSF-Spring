@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <h:outputStylesheet library="css" name="styles.css"/>
+        <title>XMLHttpRequest Ajax</title>
+        <script type="text/javascript" language="Javascript1.1">
+            var xhr;
+
+            function showDateAndTime(asyn, requestType)
+            {
+                //console.log(requestType === "Faces");
+                sendRequest("dateAndTime." + requestType, // the URL
+                        processAjaxCall, asyn);   // the callback function
+            }
+            function showCurrentTemperature(asyn, requestType) {
+                sendRequest("temperature." + requestType, // the URL
+                        processAjaxCall, asyn);
+            }
+
+            function sendRequest(url, handler, asyn)
+            {
+                console.log(asyn);
+                initXHR();
+                xhr.onreadystatechange = handler; // set callback function
+                xhr.open("get", url, asyn); // open asynchronous GET request
+                document.getElementById("paragraph").innerHTML = "Why I came right now? bcz asynchronous=" + asyn;
+                xhr.send(null); // send the request without params
+            }
+
+            function initXHR()
+            {
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+
+            function processAjaxCall()
+            {
+                if (xhr.readyState === 4)
+                {  // if the request is finished...
+                    if (xhr.status === 200) // ...and everything's okay
+                    {
+                        // Get the dateDiv DIV and configure it
+                        // with the response text
+                        var dateDiv = window.document.getElementById("dateDIV");
+                        dateDiv.innerHTML = xhr.responseText;
+                    }
+                }
+            }
+
+        </script>
+    </h:head>
+
+    <h:body styleClass="bodyColor"  >
+        <div class="banner">
+            <h:outputText value="Basic Ajax with a servlet"
+                          styleClass="bannerText"/>
+        </div>
+
+        <h:form id="form">
+            <h:panelGrid columns='2'>
+                <h:outputText value='first'/>
+                <h:inputText id='txtFirst' value="#{pb.firstName}" /> 
+                <h:outputText value='last'/>
+                <h:inputText id='txtLast' value="#{pb.lastName}" />
+            </h:panelGrid>    
+            <h:outputText value="#{pb.fullName}"/><br/>
+
+            <p><h:selectBooleanCheckbox value="#{pb.asynChecked}" id="asynCheckbox" onchange="submit()"/>Asynchronous</p>
+            <p>
+                <h:selectOneRadio value="#{pb.requestType}" onchange="submit()">
+                    <f:selectItem itemValue="faces" itemLabel="Faces" />
+                    <f:selectItem itemValue="ajax" itemLabel="Servlet" />
+                </h:selectOneRadio>
+            </p>
+            #{pb.requestType}
+            <h:commandButton type='submit' value='Submit' styleClass='button' action='person'/><br/>
+            <input type="button" value="Show Date and Time" onclick="showDateAndTime(#{pb.asynChecked}, '#{pb.requestType}');" class="button"/>
+            <input type="button" value="Show Current temperature" onclick="showCurrentTemperature(#{pb.asynChecked}, '#{pb.requestType}');" class="button"/>
+
+            <p id="paragraph"></p>
+        </h:form>
+
+        <div id="dateDIV" class="dateDiv"/>
+    </h:body>
+</html>

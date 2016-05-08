@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence>
+	<persistence-unit name="shoestringPU">
+		<jta-data-source>java:/ShoestringDS</jta-data-source>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+
+		</properties>		
+	</persistence-unit>
+</persistence>

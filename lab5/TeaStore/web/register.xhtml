@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>TODO supply a title</title>
+         <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+    <h:body>
+        <div>register with the tea site for special promotional offers</div>
+        <h:form>
+            <p>Name:   
+                <h:inputText id="name" label="name"
+                             value="#{user.name}" required="true">
+                </h:inputText> </p>
+            <h:message for="name" styleClass="errorMessage"/>
+
+            <p>Email:   
+                <h:inputText id="email" label="email"
+                             value="#{user.email}" required="true">
+                   <!--  <f:validator validatorId="com.example.validators.Email"/>-->
+                   <f:validator validatorId="com.example.validators.Email"/>
+                </h:inputText></p>
+            
+            <h:message for="email" styleClass="errorMessage"/>
+
+            <p>Birth:
+                <h:inputText id="birth" label="birth"
+                             value="#{user.birth}" required="false">
+                    <f:convertDateTime pattern="MM/yyyy"/>
+                </h:inputText></p>
+            <h:message for="birth" styleClass="errorMessage"/>
+
+            <p> Street address:
+                <h:inputText id="streetAddr" label="streetAddr"
+                             value="#{user.streetAddr}" required="false">
+                </h:inputText></p>
+            <h:message for="streetAddr" styleClass="errorMessage"/>
+
+            <p>State (abbreviation):
+                <h:inputText id="state" label="state"
+                             value="#{user.state}"   requiredMessage="#{msgs.stateError}"  required="true">
+                    <f:validateLength maximum="2" minimum="2"/>
+                </h:inputText></p>
+            <h:message for="state" styleClass="errorMessage"/>
+
+            <p>Zip:
+                <h:inputText id="zip" label="zip"
+                             value="#{user.zip}" required="true">
+                     <f:validateLength maximum="5" minimum="5"/>
+                     <f:validator validatorId="com.example.validators.Zip"/>
+                </h:inputText></p>
+            <h:message for="zip" styleClass="errorMessage"/>
+
+            <p>Age:
+                <h:inputText id="age" label="age"
+                             value="#{user.age}" required="false">
+                    <f:validateLongRange minimum="10" maximum="110"/>
+                </h:inputText></p>
+             <h:message for="age" styleClass="errorMessage"/>
+             
+            <h:commandButton value="#{msgs.submit}" action="thanks"/>
+            <h:commandButton value="#{msgs.cancel}" action="login" 
+                             immediate="true"/>
+        </h:form>
+    </h:body>
+</html>

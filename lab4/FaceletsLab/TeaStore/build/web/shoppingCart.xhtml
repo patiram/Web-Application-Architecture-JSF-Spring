@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <head><title>IGNORED</title></head>
+   <body>
+      <ui:composition template="/templates/masterLayout.xhtml">
+         <ui:define name="windowTitle">
+             "Shopping Cart"
+         </ui:define>
+
+         <ui:define name="content">
+                         <h:dataTable value="#{store.orders}" var="order">
+            <h:column>
+               <f:facet name="header">
+                   <h:outputText value="#{msgs.brandName}" 
+                                style="font-weight: bold"/>
+               </f:facet>
+                <h:outputText value="#{order.teaBrand.name}" />
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                   <h:outputText value="#{msgs.brandDescription}" 
+                                style="font-weight: bold"/>
+               </f:facet>
+                <h:outputText value="#{order.teaBrand.description}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                   <h:outputText value="#{msgs.brandAmount}" 
+                                style="font-weight: bold"/>
+               </f:facet>
+               <h:outputText value="#{order.quantity}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">
+                   <h:outputText value="#{msgs.totalPrice}" 
+                                style="font-weight: bold"/>
+               </f:facet>
+                <h:outputText value="#{order.totalPrice}"/>
+            </h:column>
+         </h:dataTable>
+            <br/>
+            <br/>
+            <strong>#{msgs.totalPrice} : </strong> #{store.totalPrice}
+            <br/>
+            <h:form>
+            <h:commandButton value="Back"  action="teaDetails" />
+            </h:form>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

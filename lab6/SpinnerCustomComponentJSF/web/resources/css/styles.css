@@ -1,0 +1,12 @@
+body {
+    background: #eee;
+}
+.pageTitle {
+    font-size: 1.25em;
+}
+
+.labelClass{
+    font-size:30px;
+    font-family:verdana;
+    color:red
+}

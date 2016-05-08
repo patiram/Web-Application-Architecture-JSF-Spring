@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <head><title>IGNORED</title></head>
+   <body>
+      <ui:composition template="/templates/masterLayout.xhtml">
+         <ui:define name="windowTitle">
+             #{store.currentTeaBrand.name}
+         </ui:define>
+
+         <ui:define name="content">
+             <h:form>
+             <h1> #{store.currentTeaBrand.name} </h1>
+             <p>
+                #{store.currentTeaBrand.description}
+             </p>
+             <p>
+             <h:graphicImage url="#{store.currentTeaBrand.image}"/>
+             </p>
+             <strong>Price: </strong>#{store.currentTeaBrand.price}
+             <p>
+                 Order Amount: <h:inputText id="order" value="#{store.quantity}" >
+                     <f:validateLongRange minimum="1"/>
+                 </h:inputText>
+                 <h:message for="order" style="color:red;"/>
+             </p>
+             <h:commandButton value="#{msgs.order}"  action="#{store.addToOrder()}" />
+             </h:form>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>
