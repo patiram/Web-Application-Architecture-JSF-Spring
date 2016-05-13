@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link rel="stylesheet"
+              href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+        <title>Products</title>
+    </h:head>
+    <h:body>
+        <section>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Products</h1>
+                    <p>All the available products in our store</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="row">
+
+                <ui:repeat value="#{productsBean.prodList}" var="product"> 
+                    <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+                        <div class="thumbnail">
+
+                            <h:graphicImage library="images" name="#{product.productId += '.jpg'}"  styleClass="leftImage"/>
+                            <div class="caption">
+                                <h3>#{product.name}</h3>
+                                <p>#{product.description}</p>
+                                <p>#{product.unitPrice} USD</p>
+                                <p>Available ${product.unitsInStock} units in stock</p>
+                                <h:button class="btn btn-primary" value="Details" outcome="#{'product?id=' += product.productId}" />
+                                <!-- <h:form>
+                                <h:commandButton class="btn btn-primary" value="Details" action="# {productsBean.findProductById(product.productId) }" />
+                                </h:form> -->
+                   
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
+
+            </div>
+        </section>
+    </h:body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <head><title>IGNORED</title></head>
+   <body>
+      <ui:composition template="/templates/masterLayout.xhtml">     
+         <ui:define name="windowTitle">
+            #{msgs.teaTitle}
+         </ui:define> 
+         
+         <ui:define name="content">
+            #{msgs.teaWelcome}
+         </ui:define>
+      </ui:composition>
+            
+                <p:menu>
+                    <p:submenu label="Selected Student Info">
+                          <p:menuitem value="View enrollments" 
+                                    actionListener="#{studentJSFinfo.changeFacultyContent('viewEnrollments')}"
+                                    update =":includeContent"
+                                    title="View all courses student has taken or registered for."/>
+                        <p:menuitem  value="View courses needing prerequisites" 
+                                     actionListener="#{studentJSFinfo.changeFacultyContent('viewExemptions')}"
+                                     update =":includeContent"                                    
+                                     title="Make sure any courses for which you are missing prerequisites are shown here."/>
+                        <p:menuitem value="View term preferences"
+                                    actionListener="#{studentJSFinfo.changeFacultyContent('viewTermPrefs')}"
+                                    update =":includeContent" 
+                                    title="View saved term perferences for this student."/>     
+                    <p:submenu label="Selected Track Info" >
+                        <p:menuitem value="View registration numbers"
+                                    actionListener="#{studentJSFinfo.changeFacultyContent('viewRegistrationNums')}"
+                                    update =":includeContent"                                     
+                                    title="You can see all registration numbers for this enrollment group."/>
+                        <p:menuitem value="View available offerings"
+                                    actionListener="#{studentJSFinfo.changeFacultyContent('viewAvailable')}"
+                                    update =":includeContent" 
+                                    title="View remaining seats available in all courses."/>
+                    </p:submenu>                     
+                </p:menu>
+            <!--RRS: for ajaxStatus dialog-->
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <p:graphicImage library="images" name="loading-icon.gif" />
+            </p:dialog>            
+   </body>
+</html>

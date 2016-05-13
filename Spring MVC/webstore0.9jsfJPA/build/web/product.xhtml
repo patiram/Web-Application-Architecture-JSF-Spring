@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+
+        <link rel="stylesheet"
+              href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+        <title>Product details</title>
+    </h:head>
+    <f:view>
+        <f:metadata>
+            <!-- following will set the productid field from the view param and then find the product by this id -->
+            <f:viewParam name="id" value="#{productsBean.productid}" />
+            <f:viewAction action="#{productsBean.findProductById}" />
+        </f:metadata>
+
+        <h:body>
+            <section>
+                <div class="jumbotron">
+                    <div class="container">
+                        <h1>Product details</h1>
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h:graphicImage library="images" name="#{productsBean.detailsProduct.productId += '.jpg'}"  style = "width:100%" styleClass="leftImage" alt="image"/>
+                    </div>
+                    <div class="col-md-5">
+                        <h3>#{productsBean.detailsProduct.name}</h3>
+                        <p>#{productsBean.detailsProduct.description}</p>
+                        <p>
+                            <strong>Item Code : </strong><span class="label label-warning">#{productsBean.detailsProduct.productId}</span>
+                        </p>
+                        <p>
+                            <strong>manufacturer</strong> :#{productsBean.detailsProduct.manufacturer}
+                        </p>
+                        <p>
+                            <strong>category</strong> : #{productsBean.detailsProduct.category}
+                        </p>
+                        <p>
+                            <strong>Availble units in stock </strong> : #{productsBean.detailsProduct.unitsInStock}
+                        </p>
+                        <h4>#{productsBean.detailsProduct.unitPrice} USD</h4>
+                        <p>
+                            <h:link value="back" outcome="products" class="btn btn-default glyphicon-hand-left glyphicon" />
+                       <!--     <a href="/products" /> class="btn btn-default">
+                            <span class='glyphicon-hand-left glyphicon'>back</span>
+                            </a>
+                            <a href="#" class="btn btn-warning btn-large"> <span
+                                    class="glyphicon-shopping-cart glyphicon"></span> Order Now
+                            </a>  -->
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </h:body>
+    </f:view>
+</html>
